@@ -3,13 +3,13 @@
   "version": "0.0.1",
   "description": "Library and tools to build Airbitz plugins",
   "main": "lib/index.js",
-  "module": "lib/index.js",
+  "module": "lib/index.es.js",
   "repository": {
     "type": "git",
     "url": "http://github.com/edge/edge-libplugin.git"
   },
   "scripts": {
-    "build": "webpack",
+    "build": "rollup -c rollup.config.js && flow-copy-source -i '**/*.test.js' src lib",
     "lint": "eslint --parser babel-eslint ./src/**/*.js",
     "lint:fix": "npm run lint -- --fix",
     "flow": "flow",
@@ -41,6 +41,13 @@
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-regenerator": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-es2015-rollup": "^3.0.0",
+    "babel-preset-flow": "^6.23.0",
     "eslint": "^4.4.1",
     "eslint-config-standard": "^10.2.1",
     "eslint-plugin-flowtype": "^2.35.0",
@@ -49,8 +56,15 @@
     "eslint-plugin-promise": "^3.4.0",
     "eslint-plugin-standard": "^3.0.1",
     "flow-bin": "^0.54.1",
+    "flow-copy-source": "^1.2.1",
     "husky": "^0.14.3",
     "r2": "^2.0.0",
+    "rollup": "^0.57.1",
+    "rollup-plugin-alias": "^1.4.0",
+    "rollup-plugin-babel": "^3.0.2",
+    "rollup-plugin-commonjs": "^8.2.6",
+    "rollup-plugin-flow": "^1.1.1",
+    "rollup-plugin-multi-entry": "^2.0.2",
     "webpack": "^3.5.3"
   },
   "files": [

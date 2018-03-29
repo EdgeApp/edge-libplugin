@@ -1,6 +1,6 @@
 // Repurposed ideas from: https://gist.github.com/blankg/d5537a458b55b9d15cb4fd78258ad840
-let promiseChain = new Promise(function(resolve, reject) {
-  function tryAgain() {
+let promiseChain = new Promise(function (resolve, reject) {
+  function tryAgain () {
     if (window.postMessage.length !== 1) {
       setTimeout(() => {
         resolve()
