@@ -3,8 +3,8 @@ let promiseChain = new Promise(function (resolve, reject) {
   function tryAgain () {
     if (window.postMessage.length !== 1) {
       setTimeout(() => {
-        resolve()
-      }, 100)
+        tryAgain()
+      }, 250)
     } else {
       resolve()
     }
