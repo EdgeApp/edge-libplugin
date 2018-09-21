@@ -14,7 +14,8 @@
     "lint:fix": "npm run lint -- --fix",
     "flow": "flow",
     "test": "npm run lint:fix && npm run flow",
-    "precommit": "npm test"
+    "precommit": "npm test",
+    "prepare": "npm run build"
   },
   "bin": {
     "edge-ify": "bin/cmd.js"
