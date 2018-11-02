@@ -1,3 +1,7 @@
+/* eslint-disable no-undef */
+window.postMessage = function (data) {
+  __REACT_WEB_VIEW_BRIDGE.postMessage(String(data))
+}
 // Repurposed ideas from: https://gist.github.com/blankg/d5537a458b55b9d15cb4fd78258ad840
 let promiseChain = new Promise(function (resolve, reject) {
   function tryAgain () {
