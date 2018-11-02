@@ -1,7 +1,34 @@
-/* eslint-disable no-undef */
-window.postMessage = function (data) {
-  __REACT_WEB_VIEW_BRIDGE.postMessage(String(data))
+function awaitPostMessage() {
+  var isReactNativePostMessageReady = !!window.originalPostMessage;
+  var queue = [];
+  var currentPostMessageFn = function store(message) {
+    if (queue.length > 100) queue.shift();
+    queue.push(message);
+  };
+  if (!isReactNativePostMessageReady) {
+    var originalPostMessage = window.postMessage;
+    Object.defineProperty(window, 'postMessage', {
+      configurable: true,
+      enumerable: true,
+      get: function () {
+        return currentPostMessageFn;
+      },
+      set: function (fn) {
+        currentPostMessageFn = fn;
+        isReactNativePostMessageReady = true;
+        setTimeout(sendQueue, 0);
+      }
+    });
+    window.postMessage.toString = function () {
+      return String(originalPostMessage);
+    };
+  }
+
+  function sendQueue() {
+    while (queue.length > 0) window.postMessage(queue.shift());
+  }
 }
+awaitPostMessage()
 // Repurposed ideas from: https://gist.github.com/blankg/d5537a458b55b9d15cb4fd78258ad840
 let promiseChain = new Promise(function (resolve, reject) {
   function tryAgain () {
