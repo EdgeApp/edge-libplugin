@@ -22,8 +22,8 @@ export function bitidSignature (uri, message) {
  * returns wallet selected from within the plugin
  * @return promise
  */
-export function chooseWallet (id) {
-  return postWrapper({func: 'chooseWallet', id})
+export function chooseWallet (id, currencyCode) {
+  return postWrapper({func: 'chooseWallet', id, currencyCode})
 }
 
 /**
