@@ -60,6 +60,14 @@ export function getAddress (walletId, currencyCode) {
 }
 
 /**
+ * Returns the API Key for plugin data calls
+ * @return promise
+ */
+export function getAPIKey () {
+  return postWrapper({func: 'getApiKey'})
+}
+
+/**
  * Finalizing a request marks the address as used and it will not be used for
  * future requests. The metadata will also be written for this address.  This
  * is useful so that when a future payment comes in, the metadata can be
