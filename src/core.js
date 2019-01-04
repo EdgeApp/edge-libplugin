@@ -64,7 +64,7 @@ export function getAddress (walletId, currencyCode) {
  * @return promise
  */
 export function getAPIKey () {
-  return postWrapper({func: 'getApiKey'})
+  return postWrapper({func: 'changeWallet'})
 }
 
 /**
