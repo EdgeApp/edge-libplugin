@@ -31,7 +31,7 @@ export function chooseWallet (id, currencyCode) {
  * @return promise
  */
 export function changeWallet () {
-  return postWrapper({func: 'getApiKey'})
+  return postWrapper({func: 'changeWallet'})
 }
 
 /**
