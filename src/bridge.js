@@ -1,31 +1,31 @@
-function awaitPostMessage() {
-  var isReactNativePostMessageReady = !!window.originalPostMessage;
-  var queue = [];
-  var currentPostMessageFn = function store(message) {
-    if (queue.length > 100) queue.shift();
-    queue.push(message);
-  };
+function awaitPostMessage () {
+  let isReactNativePostMessageReady = !!window.originalPostMessage
+  const queue = []
+  let currentPostMessageFn = function store (message) {
+    if (queue.length > 100) queue.shift()
+    queue.push(message)
+  }
   if (!isReactNativePostMessageReady) {
-    var originalPostMessage = window.postMessage;
+    const originalPostMessage = window.postMessage
     Object.defineProperty(window, 'postMessage', {
       configurable: true,
       enumerable: true,
       get: function () {
-        return currentPostMessageFn;
+        return currentPostMessageFn
       },
       set: function (fn) {
-        currentPostMessageFn = fn;
-        isReactNativePostMessageReady = true;
-        setTimeout(sendQueue, 0);
+        currentPostMessageFn = fn
+        isReactNativePostMessageReady = true
+        setTimeout(sendQueue, 0)
       }
-    });
+    })
     window.postMessage.toString = function () {
-      return String(originalPostMessage);
-    };
+      return String(originalPostMessage)
+    }
   }
 
-  function sendQueue() {
-    while (queue.length > 0) window.postMessage(queue.shift());
+  function sendQueue () {
+    while (queue.length > 0) window.postMessage(queue.shift())
   }
 }
 awaitPostMessage()
