@@ -1,4 +1,4 @@
-import * as callbacks from './callbacks.js'
+import * as callbacks from './postCallback.js'
 import * as config from './config.js'
 import * as core from './core.js'
 import * as ui from './ui.js'
