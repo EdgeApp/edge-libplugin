@@ -70,6 +70,19 @@ export function finalizeReceiveRequest (wallet, requestId) {
  * @param {string} toAddress - the recipient address
  * @param {number} nativeAmount - how many satoshis to spend
  */
+export function makeSpendRequest (spendInfo) {
+  return postWrapper({
+    func: 'makeSpendRequest',
+    ...spendInfo
+  })
+}
+
+/**
+ * Request that the user spends.
+ * @param {object} wallet - the wallet object
+ * @param {string} toAddress - the recipient address
+ * @param {number} nativeAmount - how many satoshis to spend
+ */
 export function requestSpend (wallet, toAddress, nativeAmount, options) {
   return postWrapper({
     func: 'requestSpend',
